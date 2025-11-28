@@ -96,8 +96,9 @@ def carrier2_image(request):
 
 @pytest.fixture(scope="class")
 def operator(request):
-    if request.param:
-        return request.getfixturevalue(request.param)
+    param = getattr(request, "param", None)
+    if param:
+        return request.getfixturevalue(param)
     else:
         return request.getfixturevalue("operator_with_sa")
 
