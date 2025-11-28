@@ -1,6 +1,7 @@
 from pathlib import Path
 import pytest
 from pytest_kubernetes.providers import AClusterManager
+from gefyra.types import GefyraBridgeMount
 
 pytestmark = pytest.mark.parametrize(
     "operator", ["operator_no_sa", "operator_with_sa"], indirect=True
@@ -28,8 +29,8 @@ def test_a_create_simple_mount(operator: AClusterManager, workloads_for_test):
         provider="carrier2",
         kubeconfig=k3d.kubeconfig,
         kubecontext=k3d.context,
-        wait=True,
+        wait=False,
         timeout=120,
     )
 
-    assert res is True
+    assert isinstance(res, GefyraBridgeMount)

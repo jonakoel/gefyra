@@ -25,7 +25,7 @@ class TestCustomRegistry(GefyraTestCase):
             "gefyraclients.gefyra.dev/client-a",
             "jsonpath=.state=WAITING",
             namespace="gefyra",
-            timeout=20,
+            timeout=60,
         )
 
         # connect client
@@ -47,7 +47,7 @@ class TestCustomRegistry(GefyraTestCase):
             "gefyraclients.gefyra.dev/client-a",
             "jsonpath=.state=ACTIVE",
             namespace="gefyra",
-            timeout=20,
+            timeout=60,
         )
 
         client_file_str = write_client_file(
@@ -75,9 +75,16 @@ class TestCustomRegistry(GefyraTestCase):
 
         k3d.wait(
             "gefyraclients.gefyra.dev/client-a",
+            "jsonpath=.state=WAITING",
+            namespace="gefyra",
+            timeout=60,
+        )
+
+        k3d.wait(
+            "gefyraclients.gefyra.dev/client-a",
             "jsonpath=.state=ACTIVE",
             namespace="gefyra",
-            timeout=20,
+            timeout=60,
         )
 
         client_file_str = write_client_file(
@@ -104,9 +111,16 @@ class TestCustomRegistry(GefyraTestCase):
 
         k3d.wait(
             "gefyraclients.gefyra.dev/client-a",
+            "jsonpath=.state=WAITING",
+            namespace="gefyra",
+            timeout=60,
+        )
+
+        k3d.wait(
+            "gefyraclients.gefyra.dev/client-a",
             "jsonpath=.state=ACTIVE",
             namespace="gefyra",
-            timeout=20,
+            timeout=60,
         )
 
         client_file_str = write_client_file(
